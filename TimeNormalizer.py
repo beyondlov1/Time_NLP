@@ -13,6 +13,7 @@ import os
 from StringPreHandler import StringPreHandler
 from TimePoint import TimePoint
 from TimeUnit import TimeUnit
+import sys
 
 # 时间表达式识别的主要工作类
 class TimeNormalizer:
@@ -56,21 +57,22 @@ class TimeNormalizer:
         return input_query
 
     def init(self):
-        fpath = os.path.dirname(__file__) + '/resource/reg.pkl'
+        curr_dir = os.path.dirname(sys.argv[0])
+        fpath = curr_dir + '/resource/reg.pkl'
         try:
             with open(fpath, 'rb') as f:
                 pattern = pickle.load(f)
         except:
-            with open(os.path.dirname(__file__) + '/resource/regex.txt', 'r', encoding="utf-8") as f:
+            with open(curr_dir + '/resource/regex.txt', 'r', encoding="utf-8") as f:
                 content = f.read()
             p = re.compile(content)
             with open(fpath, 'wb') as f:
                 pickle.dump(p, f)
             with open(fpath, 'rb') as f:
                 pattern = pickle.load(f)
-        with open(os.path.dirname(__file__) + '/resource/holi_solar.json', 'r', encoding='utf-8') as f:
+        with open(curr_dir + '/resource/holi_solar.json', 'r', encoding='utf-8') as f:
             holi_solar = json.load(f)
-        with open(os.path.dirname(__file__) + '/resource/holi_lunar.json', 'r', encoding='utf-8') as f:
+        with open(curr_dir + '/resource/holi_lunar.json', 'r', encoding='utf-8') as f:
             holi_lunar = json.load(f)
         return pattern, holi_solar, holi_lunar
 

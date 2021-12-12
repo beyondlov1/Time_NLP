@@ -52,3 +52,16 @@ demo：python3 Test.py
 | 问题          | 现在版本                                     | 正确
 | ----------- | ---------------------------------------- | ---------------------- |
 | 晚上8点到上午10点之间     |  ["2018-03-16 20:00:00", "2018-03-16 22:00:00"] |  ["2018-03-16 20:00:00", "2018-03-17 10:00:00"]"                                    | "timestamp": "2018-04-08 00:00:00"                 |
+
+
+### fix
+__file__改为了sys.argv[0]
+否则cxfreeze打包会找不到resource文件夹
+
+### 部署
+虚拟环境下部署:
+sudo env PYTHONPATH=${VIRTUAL_PYTHON_PATH}/lib/python3.8/site-packages python3 setup.py install --prefix=${VIRTUAL_PYTHON_PATH}
+VIRTUAL_PYTHON_PATH: python虚拟环境安装目录
+
+### cxfreeze 打包
+cxfreeze qt-demo.py --zip-include=${VIRTUAL_PYTHON_PATH}/lib/python3.8/site-packages/TimeConverter-1.1.0-py3.8.egg/resource/ --include-files=${VIRTUAL_PYTHON_PATH}/lib/python3.8/site-packages/TimeConverter-1.1.0-py3.8.egg/resource/
