@@ -64,4 +64,7 @@ sudo env PYTHONPATH=${VIRTUAL_PYTHON_PATH}/lib/python3.8/site-packages python3 s
 VIRTUAL_PYTHON_PATH: python虚拟环境安装目录
 
 ### cxfreeze 打包
-cxfreeze qt-demo.py --zip-include=${VIRTUAL_PYTHON_PATH}/lib/python3.8/site-packages/TimeConverter-1.1.0-py3.8.egg/resource/ --include-files=${VIRTUAL_PYTHON_PATH}/lib/python3.8/site-packages/TimeConverter-1.1.0-py3.8.egg/resource/
+打开虚拟环境:
+source activate
+ 
+cxfreeze qt-demo.py --zip-include=${VIRTUAL_ENV}/lib/python3.8/site-packages/TimeConverter-1.1.0-py3.8.egg/resource/ --include-files=${VIRTUAL_ENV}/lib/python3.8/site-packages/TimeConverter-1.1.0-py3.8.egg/resource/
