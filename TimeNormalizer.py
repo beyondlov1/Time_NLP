@@ -58,21 +58,22 @@ class TimeNormalizer:
 
     def init(self):
         curr_dir = os.path.dirname(sys.argv[0])
-        fpath = curr_dir + '/resource/reg.pkl'
+        SEPERATOR = os.path.sep
+        fpath = curr_dir + SEPERATOR+'resource'+SEPERATOR+'reg.pkl'
         try:
             with open(fpath, 'rb') as f:
                 pattern = pickle.load(f)
         except:
-            with open(curr_dir + '/resource/regex.txt', 'r', encoding="utf-8") as f:
+            with open(curr_dir + SEPERATOR+'resource'+SEPERATOR+'regex.txt', 'r', encoding="utf-8") as f:
                 content = f.read()
             p = re.compile(content)
             with open(fpath, 'wb') as f:
                 pickle.dump(p, f)
             with open(fpath, 'rb') as f:
                 pattern = pickle.load(f)
-        with open(curr_dir + '/resource/holi_solar.json', 'r', encoding='utf-8') as f:
+        with open(curr_dir + SEPERATOR+'resource'+SEPERATOR+'holi_solar.json', 'r', encoding='utf-8') as f:
             holi_solar = json.load(f)
-        with open(curr_dir + '/resource/holi_lunar.json', 'r', encoding='utf-8') as f:
+        with open(curr_dir + SEPERATOR + 'resource'+SEPERATOR+'holi_lunar.json', 'r', encoding='utf-8') as f:
             holi_lunar = json.load(f)
         return pattern, holi_solar, holi_lunar
 
